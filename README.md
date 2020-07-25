@@ -4,6 +4,10 @@
 
 [Documentation](https://docs.rs/crate/slab_allocator)
 
+## Patches
+I patched this crate to work with some of the changes made over the past 2 years to the `linked_list_allocator` crate, and certain changes made to the `alloc` crate.
+There are a few comments scattered around the code to signify my small changes. Quick note: I have not properly retested everything, but these changes should be minor enough not to make a difference.
+
 ## Usage
 
 Create a static allocator in your root module:
