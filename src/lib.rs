@@ -105,10 +105,10 @@ impl Heap {
     }
 
     /// Allocates a chunk of the given size with the given alignment. Returns a pointer to the
-    /// beginning of that chunk if it was successful. Else it returns `Err`.
+    /// beginning of that chunk if it was successful. Else it returns `Err`. //patched to return `()` instead, like the Linked list Allocator does
     /// This function finds the slab of lowest size which can still accomodate the given chunk.
     /// The runtime is in `O(1)` for chunks of size <= 4096, and `O(n)` when chunk size is > 4096,
-    pub fn allocate(&mut self, layout: Layout) -> Result<NonNull<u8>, AllocErr> {
+    pub fn allocate(&mut self, layout: Layout) -> Result<NonNull<u8>, ()> {
         match Heap::layout_to_allocator(&layout) {
             HeapAllocator::Slab64Bytes => self.slab_64_bytes.allocate(layout),
             HeapAllocator::Slab128Bytes => self.slab_128_bytes.allocate(layout),
