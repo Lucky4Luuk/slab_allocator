@@ -182,6 +182,7 @@ impl Heap {
     }
 }
 
+/*
 unsafe impl Alloc for Heap {
     unsafe fn alloc(&mut self, layout: Layout) -> Result<NonNull<u8>, AllocErr> {
         self.allocate(layout)
@@ -195,6 +196,7 @@ unsafe impl Alloc for Heap {
         self.usable_size(layout)
     }
 }
+*/
 
 pub struct LockedHeap(Mutex<Option<Heap>>);
 
