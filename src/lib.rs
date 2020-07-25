@@ -12,7 +12,7 @@ mod slab;
 
 use core::ops::Deref;
 
-use alloc::alloc::{Alloc, AllocErr, Layout};
+use alloc::alloc::{AllocErr, Layout};
 use core::alloc::GlobalAlloc;
 use core::ptr::NonNull;
 use slab::Slab;
@@ -224,6 +224,7 @@ impl Deref for LockedHeap {
     }
 }
 
+/*
 unsafe impl<'a> Alloc for &'a LockedHeap {
     unsafe fn alloc(&mut self, layout: Layout) -> Result<NonNull<u8>, AllocErr> {
         if let Some(ref mut heap) = *self.0.lock() {
@@ -249,6 +250,7 @@ unsafe impl<'a> Alloc for &'a LockedHeap {
         }
     }
 }
+*/
 
 unsafe impl GlobalAlloc for LockedHeap {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
